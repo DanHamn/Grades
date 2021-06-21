@@ -21,7 +21,7 @@ namespace Grades.Tests.Types
             Assert.AreEqual(89.1f, grades[1]);
         }
 
-        private void AddGrades(float[] grades)
+        private static void AddGrades(float[] grades)
         {
             grades[1] = 89.1f;
         }
@@ -37,7 +37,7 @@ namespace Grades.Tests.Types
         [TestMethod]
         public void AddDaysToDateTime()
         {
-            DateTime date = new DateTime(2021, 6, 1);
+            DateTime date = new(2021, 6, 1);
             date = date.AddDays(1);
             Assert.AreEqual(2, date.Day);
         }
@@ -50,7 +50,7 @@ namespace Grades.Tests.Types
             Assert.AreEqual(47, x);
         }
 
-        private void IncrementNumber(ref int number)
+        private static void IncrementNumber(ref int number)
         {
             number += 1;
         }
@@ -58,17 +58,19 @@ namespace Grades.Tests.Types
         [TestMethod]
         public void ReferenceTypesPassByValues()
         {
-            GradeBook book1 = new GradeBook();
+            GradeBook book1 = new();
             GradeBook book2 = book1;
 
             GiveBookAName(ref book2);
             Assert.AreEqual("A GradeBook", book2.Name);
         }
 
-        private void GiveBookAName(ref GradeBook book)
+        private static void GiveBookAName(ref GradeBook book)
         {
-            book = new GradeBook();
-            book.Name = "A GradeBook";
+            book = new GradeBook
+            {
+                Name = "A GradeBook"
+            };
         }
 
 
@@ -94,7 +96,7 @@ namespace Grades.Tests.Types
         [TestMethod]
         public void GradeBookVaribblesHoldAReference()
         {
-            GradeBook g1 = new GradeBook();
+            GradeBook g1 = new();
             GradeBook g2 = g1;
 
             g1.Name = "Scott's grade book";
